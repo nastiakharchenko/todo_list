@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo list</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+
+    <div class="header-row">
+        <h3>Table task:</h3>
+        <a th:href="@{/add}" class="button-link">Add new task</a>
+    </div>
+
+    <div th:replace="~{components/table-component :: taskTable( ${tasks} ) }"></div>
+
+<!--    <h3>Table task:</h3>-->
+
+<!--    <div th:replace="~{components/table-component :: taskTable( ${tasks} ) }"></div>-->
+
+<!--    <a th:href="@{/add}" class="button-link">Add new task</a>-->
+
+    <div style="text-align: center; margin: 20px;">
+        <span th:each="i : ${#numbers.sequence(1, totalPages)}">
+            <a th:href="@{'/?page=' + ${i}}"
+               th:text="${i}"
+               style="margin: 0 5px; text-decoration: none;"
+               th:classappend="${i == currentPage} ? 'active-page' : ''"></a>
+        </span>
+    </div>
+
+</body>
+</html>
